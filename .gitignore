@@ -1,0 +1,9 @@
+*node_modules/
+venv/
+*.sql
+*.sql-journal
+*.log
+.DS_Store
+
+# poi dist
+dist
