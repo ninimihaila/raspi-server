@@ -1,0 +1,7 @@
+flask
+gpiozero
+RPi.GPIO
+
+# dev
+ipython
+pudb

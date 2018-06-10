@@ -16,14 +16,14 @@ def create(conn):
     for table in tables:
         c.execute('''
                 create table {name}
-                (date text, time text, value int)
+                (date text, time text, value text)
             '''.format(name=table['name']))
     
 def get_latest(conn, table, latest=1):
     c = conn.cursor()
     c.execute("select * from {table} order by date, time desc limit {latest}"
         .format(table=table, latest=latest))
-    return c.fetchone()
+    return c.fetchall()
 
 def to_date(datetime):
     return datetime.strftime('%Y-%m-%d')
@@ -34,10 +34,10 @@ def to_time(datetime):
 def log_value(conn, table, value):
     c = conn.cursor()
     now = datetime.now()
-    c.execute("insert into {table} values ('{date}', '{time}', {value})"
-        .format(table=table, date=to_date(now), time=to_time(now), value=value))
+    c.execute("insert into {table} values ('{date}', '{time}', '{value}')"
+        .format(table=table, date=to_date(now), time=to_time(now), value=str(value)))
+    commit(conn)
     
-
 def commit(conn):
     conn.commit()
 
