@@ -12,7 +12,7 @@ def home():
 
 @app.route('/ir', methods=['GET'])
 def ir():
-    return jsonify(db.get_latest(conn, 'ir', 10))
+    return jsonify(db.get_latest(conn, 'ir', 12))
 
 
 app.run(host='0.0.0.0', port=5000)

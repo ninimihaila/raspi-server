@@ -9,7 +9,6 @@ conn = db.connect('sensors.sql')
 class Sensor:
     def __init__(self, *args):
         self._sensor = self._sensor_type(*args)
-        self._value = self._sensor_value
     
     def log(self):
         db.log_value(conn, self.name, self.value)
@@ -20,7 +19,7 @@ class Sensor:
     
     @property
     def value(self):
-        return self._value(self._sensor)
+        return self._sensor_value(self._sensor)
     
 
 class Pir(Sensor):
@@ -35,7 +34,7 @@ sensors = [pir]
 
 while True:
     for sensor in sensors:
-        #sensor.log()
+        sensor.log()
         print(sensor.value)
     
     sleep(1)

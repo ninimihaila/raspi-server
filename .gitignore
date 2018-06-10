@@ -5,6 +5,7 @@ venv/
 *.sql
 *.sql-journal
 *.log
+*.pyc
 .DS_Store
 
 # poi dist
